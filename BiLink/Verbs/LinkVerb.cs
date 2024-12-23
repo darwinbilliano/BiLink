@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using BiLink.Utilities;
+﻿using BiLink.Utilities;
 using CommandLine;
 
 namespace BiLink.Verbs;
@@ -61,7 +60,7 @@ public class LinkVerb : VerbBase
             else
             {
                 Logger.LogMove(sourceDirectory.FullName, sourceDirectory.FullName + ".bak");
-                Directory.Move( sourceDirectory.FullName, sourceDirectory.FullName + ".bak");
+                Directory.Move(sourceDirectory.FullName, sourceDirectory.FullName + ".bak");
             }
         }
         else

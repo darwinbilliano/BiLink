@@ -11,7 +11,7 @@ public static class Program
             .WithParsed<LinkVerb>(Execute)
             .WithParsed<UnlinkVerb>(Execute);
     }
-    
+
     private static void Execute<T>(T verb) where T : VerbBase
     {
         verb.Execute();

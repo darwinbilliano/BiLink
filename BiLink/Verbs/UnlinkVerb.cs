@@ -35,10 +35,10 @@ public class UnlinkVerb : VerbBase
 
         Logger.LogDelete(sourceDirectory.FullName);
         sourceDirectory.Delete();
-        
+
         Logger.LogCopy(targetPath.FullName, sourceDirectory.FullName);
         DirectoryUtils.Copy(targetPath, sourceDirectory, Verbose);
-        
+
         if (DeleteSource)
         {
             Logger.LogDelete(targetPath.FullName);

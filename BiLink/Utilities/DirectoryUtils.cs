@@ -14,22 +14,22 @@ public static class DirectoryUtils
             var destinationFile = new FileInfo(destinationFilePath);
 
             Debug.Assert(destinationFile.Directory is not null);
-            
+
             if (!destinationFile.Directory.Exists)
             {
                 if (verbose)
                 {
                     Logger.LogCreate(destinationFile.Directory.FullName);
                 }
-                
+
                 destinationFile.Directory.Create();
             }
-            
+
             if (verbose)
             {
                 Logger.LogCopy(sourceFile.FullName, destinationFile.FullName);
             }
-        
+
             File.Copy(sourceFile.FullName, destinationFile.FullName);
         }
     }
