@@ -2,6 +2,18 @@
 
 BiLink is a command-line tool for managing symbolic links between directories.
 
+## Quick Start
+
+### Installation
+
+The easiest way to set up BiLink is to place the downloaded executable in `C:\Windows` because it is already included in the Path environment variable.
+
+### Administrator Privileges
+
+BiLink requires administrator privileges when modifying system directories, such as `Program Files`.
+
+To achieve this, you can run your terminal with administrative privileges. Alternatively, you can use Windows sudo mode available in Windows 24H2 and above.
+
 ## Usage
 
 ### Create symbolic link
