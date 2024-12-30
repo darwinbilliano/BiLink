@@ -6,11 +6,11 @@ using CommandLine;
 
 namespace BiLink.CommandLine.Verbs;
 
-[Verb("unlink", HelpText = "")]
+[Verb("unlink", HelpText = "Delete symbolic link and move its target to it.")]
 public class UnlinkVerb : Verb
 {
     [Required]
-    [Value(0, HelpText = "", MetaName = "path")]
+    [Value(0, HelpText = "The symbolic link path", MetaName = "path")]
     public string Path { get; set; }
 
     protected override void OnExecute()

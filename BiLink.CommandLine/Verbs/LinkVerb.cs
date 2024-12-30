@@ -6,18 +6,17 @@ using CommandLine;
 
 namespace BiLink.CommandLine.Verbs;
 
-[Verb("link", HelpText = "")]
+[Verb("link", HelpText = "Create a symbolic link pointing to target directory.")]
 public class LinkVerb : Verb
 {
     [Required]
-    [Value(0, HelpText = "", MetaName = "path")]
+    [Value(0, HelpText = "Path to create the symbolic link.", MetaName = "path")]
     public string Path { get; init; }
 
-    [Required]
-    [Value(1, HelpText = "", MetaName = "target")]
+    [Value(1, HelpText = "Symbolic link target directory.", MetaName = "target")]
     public string Target { get; init; }
 
-    [Option("force", HelpText = "")]
+    [Option("force", HelpText = "Continue operation even if target directory already exists.")]
     public bool Force { get; init; }
 
     protected override void OnExecute()
