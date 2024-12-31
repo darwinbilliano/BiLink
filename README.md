@@ -2,6 +2,10 @@
 
 A command line tool that manages symbolic links.
 
+## Installation
+
+The easiest way to install BiLink is to put `BiLink.exe` in an existing directory that is in the PATH environment variable, e.g., `C:\Windows\`.
+
 ## Usage
 
 `bilink <command>`
