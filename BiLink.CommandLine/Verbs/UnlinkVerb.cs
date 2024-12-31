@@ -1,54 +1,33 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using BiLink.Core.Models;
-using BiLink.Core.Utilities;
+using BiLink.Core;
 using CommandLine;
 
 namespace BiLink.CommandLine.Verbs;
 
 [Verb("unlink", HelpText = "Delete symbolic link and move its target to it.")]
-public class UnlinkVerb : Verb
+public record UnlinkVerb : IVerb
 {
     [Required]
     [Value(0, HelpText = "The symbolic link path", MetaName = "path")]
     public string Path { get; set; }
 
-    protected override void OnExecute()
+    public IEnumerable<IAction> Execute()
     {
         var sourceDir = new DirectoryInfo(Path);
         if (!sourceDir.Exists)
         {
             Console.Error.WriteLine("Source directory does not exist.");
-            return;
+            yield break;
         }
 
         var targetDir = sourceDir.ResolveLinkTarget(false) as DirectoryInfo;
         if (targetDir is null)
         {
             Console.Error.WriteLine("Source directory is not a symbolic link.");
-            return;
+            yield break;
         }
 
-        Directory.Delete(sourceDir.FullName);
-        Console.WriteLine("DELETE: {0}", sourceDir.FullName);
-
-        foreach (var result in targetDir.MoveFiles(sourceDir))
-        {
-            switch (result)
-            {
-                case FileCopyResult copyResult:
-                    Console.WriteLine("MOVE: {0} -> {1}", copyResult.Source, copyResult.Destination);
-                    break;
-                case FileCreateResult createResult:
-                    Console.WriteLine("CREATE: {0}", createResult.Path);
-                    break;
-                case FileDeleteResult deleteResult:
-                    Console.WriteLine("DELETE: {0}", deleteResult.Path);
-                    break;
-                default:
-                    Debug.Fail("Unexpected file result.");
-                    break;
-            }
-        }
+        yield return new DirectoryDeleteAction(sourceDir);
+        yield return new DirectoryMoveAction(targetDir, sourceDir);
     }
 }
