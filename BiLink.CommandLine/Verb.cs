@@ -7,27 +7,27 @@ public abstract class Verb
 {
     public void Execute()
     {
-        try
+        if (OnValidate())
         {
-            OnValidate();
             OnExecute();
-        }
-        catch (Exception ex)
-        {
-#if DEBUG
-            Console.Error.WriteLine(ex);
-#else
-            Console.Error.WriteLine(ex.Message);
-#endif
         }
     }
 
     protected abstract void OnExecute();
 
     [SuppressMessage("Trimming", "IL2026")]
-    private void OnValidate()
+    private bool OnValidate()
     {
         var context = new ValidationContext(this);
-        Validator.ValidateObject(this, context, true);
+        var results = new List<ValidationResult>();
+
+        Validator.TryValidateObject(this, context, results, true);
+
+        foreach (var result in results)
+        {
+            Console.Error.WriteLine(result.ErrorMessage);
+        }
+
+        return results.Count == 0;
     }
 }
