@@ -18,14 +18,14 @@ public class UnlinkVerb : Verb
         var sourceDir = new DirectoryInfo(Path);
         if (!sourceDir.Exists)
         {
-            Console.WriteLine("Source directory does not exist.");
+            Console.Error.WriteLine("Source directory does not exist.");
             return;
         }
 
         var targetDir = sourceDir.ResolveLinkTarget(false) as DirectoryInfo;
         if (targetDir is null)
         {
-            Console.WriteLine("Source directory is not a symbolic link.");
+            Console.Error.WriteLine("Source directory is not a symbolic link.");
             return;
         }
 

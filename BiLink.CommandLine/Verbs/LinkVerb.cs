@@ -35,7 +35,7 @@ public class LinkVerb : Verb
                 }
                 catch (IOException)
                 {
-                    Console.WriteLine("Target directory already exists.");
+                    Console.Error.WriteLine("Target directory already exists.");
                     return;
                 }
             }
