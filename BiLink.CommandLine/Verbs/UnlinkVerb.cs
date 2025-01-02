@@ -9,7 +9,7 @@ public record UnlinkVerb : IVerb
 {
     [Required]
     [Value(0, HelpText = "The symbolic link path.", MetaName = "path")]
-    public string Path { get; set; }
+    public string Path { get; init; }
 
     public IEnumerable<IAction> Execute()
     {
