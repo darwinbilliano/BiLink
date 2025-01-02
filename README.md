@@ -37,4 +37,7 @@ Create symbolic link at <path> pointing to mirror of <path> in drive <drive>.
 
 `bilink unlink <path>`
 
+Options:
+- `--force`
+
 Attempt to remove symbolic link at <path>, then move the automatically resolved target directory to it.
