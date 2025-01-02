@@ -18,7 +18,7 @@ public record MirrorLinkVerb : IVerb
     [Value(1, HelpText = "The target drive of symbolic link mirror.", MetaName = "target")]
     public string Target { get; init; }
 
-    [Option("force", HelpText = "Continue operation even if target directory already exists.")]
+    [Option("force", HelpText = "Continue operation even if target already exists.")]
     public bool Force { get; init; }
 
     public IEnumerable<IAction> Execute()

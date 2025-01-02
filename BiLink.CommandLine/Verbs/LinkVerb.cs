@@ -15,7 +15,7 @@ public record LinkVerb : IVerb
     [Value(1, HelpText = "Symbolic link target directory.", MetaName = "target")]
     public string Target { get; init; }
 
-    [Option("force", HelpText = "Continue operation even if target directory already exists.")]
+    [Option("force", HelpText = "Continue operation even if target already exists.")]
     public bool Force { get; init; }
 
     public IEnumerable<IAction> Execute()
@@ -31,7 +31,7 @@ public record LinkVerb : IVerb
                 yield break;
             }
 
-            yield return new DirectoryMoveAction(sourceDir, targetDir);
+            yield return new DirectoryMoveAction(sourceDir, targetDir, Force);
         }
         else
         {

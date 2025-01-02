@@ -1,10 +1,10 @@
 namespace BiLink.Core;
 
-public readonly struct FileCopyAction(FileInfo source, FileInfo destination) : IAction
+public readonly struct FileCopyAction(FileInfo source, FileInfo destination, bool force) : IAction
 {
     public IEnumerable<IAction> Execute()
     {
-        File.Copy(source.FullName, destination.FullName);
+        File.Copy(source.FullName, destination.FullName, force);
         return [];
     }
 

@@ -11,6 +11,9 @@ public record UnlinkVerb : IVerb
     [Value(0, HelpText = "The symbolic link path.", MetaName = "path")]
     public string Path { get; init; }
 
+    [Option("force", HelpText = "Continue operation even if target already exists.")]
+    public bool Force { get; init; }
+
     public IEnumerable<IAction> Execute()
     {
         var sourceDir = new DirectoryInfo(Path);
@@ -28,6 +31,6 @@ public record UnlinkVerb : IVerb
         }
 
         yield return new DirectoryDeleteAction(sourceDir);
-        yield return new DirectoryMoveAction(targetDir, sourceDir);
+        yield return new DirectoryMoveAction(targetDir, sourceDir, Force);
     }
 }
