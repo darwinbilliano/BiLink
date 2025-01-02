@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
+using System.Runtime.Versioning;
 
 namespace BiLink.CommandLine.Utilities;
 
@@ -12,6 +13,11 @@ public static class ReflectionUtils
         return Assembly.GetExecutingAssembly()
             .GetTypes()
             .Where(type => type.IsAssignableTo(typeof(T)))
+            .Where(type => !type.IsAbstract)
+            .Where(type =>
+                type.GetCustomAttribute<SupportedOSPlatformAttribute>() is not SupportedOSPlatformAttribute
+                    supportedOsPlatformAttribute ||
+                OperatingSystem.IsOSPlatform(supportedOsPlatformAttribute.PlatformName))
             .ToArray();
     }
 
