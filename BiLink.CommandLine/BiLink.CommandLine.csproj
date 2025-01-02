@@ -8,7 +8,7 @@
 
     <PropertyGroup>
         <AssemblyName>BiLink</AssemblyName>
-        <Version>0.2.1</Version>
+        <Version>0.3.0</Version>
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
         <PublishAot>true</PublishAot>
     </PropertyGroup>
