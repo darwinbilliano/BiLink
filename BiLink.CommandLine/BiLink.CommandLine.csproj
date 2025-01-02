@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -8,21 +8,21 @@
 
     <PropertyGroup>
         <AssemblyName>BiLink</AssemblyName>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
         <PublishAot>true</PublishAot>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommandLineParser" Version="2.9.1"/>
+        <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BiLink.Core\BiLink.Core.csproj"/>
+        <ProjectReference Include="..\BiLink.Core\BiLink.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <TrimmerRootAssembly Include="BiLink"/>
+        <TrimmerRootAssembly Include="BiLink" />
     </ItemGroup>
 
 </Project>
